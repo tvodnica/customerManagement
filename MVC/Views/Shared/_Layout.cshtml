@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RWA Projekt</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="insertButtons">
+        @Html.ActionLink("Dodaj novi proizvod",
+                 actionName: "CreateProizvod",
+                 routeValues: new { },
+                 htmlAttributes: new { @class = "btn btn-danger" })
+
+        @Html.ActionLink("Dodaj novu podkategoriju",
+                    actionName: "CreatePotkategorija",
+                    routeValues: new { },
+                    htmlAttributes: new { @class = "btn btn-danger" })
+
+        @Html.ActionLink("Dodaj novu kategoriju",
+                   actionName: "CreateKategorija",
+                   routeValues: new { },
+                   htmlAttributes: new { @class = "btn btn-danger" })
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("RWA Projekt - MVC", "", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="@MVC.Constants.HomePage">Početna</a></li>
+                    <li>@Html.ActionLink("Odjava", actionName: "Logout")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@{
+    string errorTitle = ViewBag.errorTitle == null? "GREŠKA" : ViewBag.errorTitle;
+    string errorMessage = ViewBag.errorMessage == null ? "Nešto je pošlo po zlu :(" : ViewBag.errorMessage;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GREŠKA - RWA Projekt</title>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1 class="myError" id="errorTitle">@errorTitle</h1>
+        <h3>Dogodila se sljedeća pogreška:</h3>
+        <h4 runat="server" id="errorMessage">@errorMessage</h4>
+        <a href="/" class="btn btn-primary myBtn">Povratak</a>
+    </div>
+</body>
+</html>

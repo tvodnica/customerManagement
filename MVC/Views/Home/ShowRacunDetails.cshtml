@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MVC.Models.StavkaVM>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowRacunDetails</title>
+</head>     
+<body>
+    <h2>Prikaz stavki za račun @ViewBag.racunID</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.IDStavka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.Kolicina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.ProizvodID)
+            </th>
+            <th>
+                Kategorija
+            </th>
+            <th>
+                Potkategorija
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.CijenaPoKomadu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.PopustUPostocima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stavka.UkupnaCijena)
+            </th>
+            <th>
+                @{/*  @Html.ActionLink("Dodaj novu stavku", "Create",
+                                     routeValues: new { }, htmlAttributes: new { @class = "btn btn-danger" })*/
+                }
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stavka.IDStavka)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stavka.Kolicina)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Proizvod.Naziv, actionName: "ShowProizvodDetails",
+                    routeValues: new { id = item.Stavka.ProizvodID })
+                </td>
+                <td>
+                    @Html.ActionLink(item.Kategorija.Naziv, actionName: "ShowKategorijaDetails",
+                    routeValues: new { id = item.Kategorija.IDKategorija })
+                </td>
+                <td>
+                    @Html.ActionLink(item.Potkategorija.Naziv, actionName: "ShowPotkategorijaDetails",
+                    routeValues: new { id = item.Potkategorija.IDPotkategorija })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stavka.CijenaPoKomadu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stavka.PopustUPostocima)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stavka.UkupnaCijena)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+
+    </table>
+    @{
+        if (Request.UrlReferrer != null)
+        {
+            <a href="@Request.UrlReferrer" class="btn btn-primary">Natrag</a>
+        }
+    }
+   
+</body>
+</html>

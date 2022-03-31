@@ -1,0 +1,51 @@
+﻿@using MVC.Models
+@{
+    ViewBag.Title = "ShowKupacData";
+    IEnumerable<Racun> racuni = (IEnumerable<Racun>)ViewBag.racuni;
+    IEnumerable<Kupac> kupci = (IEnumerable<Kupac>)ViewBag.kupci;
+    int id = ViewBag.id;
+    Kupac kupac = new Kupac();
+    foreach (var k in Repo.GetKupci())
+    {
+        if (k.IDKupac == id)
+        {
+            kupac = k;
+        }
+    }
+
+}
+<h2>@kupac.Ime @kupac.Prezime - računi</h2>
+
+<table class="table table-striped">
+    <thead>
+
+        <tr>
+            <th>Broj računa</th>
+            <th>Datum izdavanja</th>
+            <th>Kreditna kartica</th>
+            <th>Komercijalist</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in racuni)
+        {
+            <tr>
+                <td>@r.BrojRacuna</td>
+                <td>@r.DatumIzdavanja.ToShortDateString()</td>
+                <td>@Html.Action(actionName: "GetKreditnaKarticaType", routeValues: new { id = r.KreditnaKarticaID })</td>
+                <td>@Html.Action(actionName: "GetKomercijalistName", routeValues: new { id = r.KomercijalistID })</td>
+                <td>
+                    <a href=@Url.Action(actionName:"ShowRacunDetails",
+                          routeValues: new {id=@r.IDRacun})
+                       class="btn btn-primary btn-sm">Detalji</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+        <a href="@Constants.HomePage" class="btn btn-primary">Natrag</a>
+
+
+

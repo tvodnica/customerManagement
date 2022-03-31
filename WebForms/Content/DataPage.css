@@ -1,0 +1,20 @@
+﻿#mainContainer {
+    margin-top: 75px;
+}
+
+#viewOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.oneViewOption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.validationSummary {
+    color: red;
+}

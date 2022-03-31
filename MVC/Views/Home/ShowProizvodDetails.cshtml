@@ -1,0 +1,80 @@
+﻿@model MVC.Models.Proizvod
+
+@{
+    ViewBag.Title = "ShowProizvodDetails";
+    string potkategorijaNaziv =
+        Html.Action(actionName: "GetPotkategorijaName",
+        routeValues: new { id = Model.PotkategorijaID })
+        .ToString();
+}
+
+<h2>Detalji proizvoda</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDProizvod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDProizvod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PotkategorijaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => potkategorijaNaziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojProizvoda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojProizvoda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Boja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Boja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimalnaKolicinaNaSkladistu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimalnaKolicinaNaSkladistu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CijenaBezPDV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CijenaBezPDV)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "EditProizvod", new { id = Model.IDProizvod }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Obriši", "DeleteProizvod", new { id = Model.IDProizvod }, new { @class = "btn btn-danger" })
+    <br />
+    <br />
+    @Html.Partial("ReturnToRacunDetailsLink")
+</p>

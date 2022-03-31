@@ -1,0 +1,19 @@
+﻿@if (Session["currentKupac"] != null)
+{
+    int kupacID;
+    try
+    {
+        kupacID = int.Parse(Session["currentKupac"].ToString());
+    }
+    catch (Exception)
+    {
+        kupacID = 0;
+    }
+
+
+    @Html.ActionLink(
+             "Natrag",
+             actionName: "ShowRacunDetails",
+             routeValues: new { id = kupacID }
+            );
+}
